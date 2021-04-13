@@ -71,7 +71,7 @@ CuOOra >> addUser: aUser [
 		ifFalse: [ users add: aUser ]
 ]
 
-{ #category : #accessing }
+{ #category : #other }
 CuOOra >> createUserWithUsername: aUsername andPassword: aPassword [
 	^ (users anySatisfy: [ :user | user username = aUsername ])
 		ifTrue: [ nil ]
@@ -81,7 +81,7 @@ CuOOra >> createUserWithUsername: aUsername andPassword: aPassword [
 			user ]
 ]
 
-{ #category : #accessing }
+{ #category : #other }
 CuOOra >> getOrCreateTopicWithName: aName [
 	^ topics
 		detect: [ :each | each name = aName ]
@@ -91,7 +91,7 @@ CuOOra >> getOrCreateTopicWithName: aName [
 			topic ]
 ]
 
-{ #category : #accessing }
+{ #category : #other }
 CuOOra >> getUserWithUsername: aUsername andPassword: aPassword [
 	^ users
 		detect: [ :user | user username = aUsername and: user password = aPassword ]

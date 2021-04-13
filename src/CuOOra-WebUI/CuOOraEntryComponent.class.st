@@ -71,7 +71,8 @@ CuOOraEntryComponent >> renderNavbarOn: aCanvas [
 { #category : #callbacks }
 CuOOraEntryComponent >> signOut [
 	self session user: nil.
-	cuOOraTask := CuOOraTask new
+	self session unregister.
+	self requestContext redirectTo: self application url
 ]
 
 { #category : #hooks }

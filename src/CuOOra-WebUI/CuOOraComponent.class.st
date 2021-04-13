@@ -34,7 +34,7 @@ CuOOraComponent >> renderAnswer: anAnswer on: aCanvas [
 
 { #category : #rendering }
 CuOOraComponent >> renderAnswers: anAnswerCollection on: aCanvas [
-	anAnswerCollection do: [ :answer | self renderAnswer: answer on: aCanvas ]
+	anAnswerCollection do: [ :answer | self renderAnswer: answer on: aCanvas. aCanvas horizontalRule ]
 ]
 
 { #category : #rendering }
@@ -50,5 +50,5 @@ CuOOraComponent >> renderQuestion: aQuestion on: aCanvas [
 { #category : #rendering }
 CuOOraComponent >> renderQuestions: aQuestionCollection on: aCanvas [
 	aQuestionCollection
-		do: [ :question | self renderQuestion: question on: aCanvas ]
+		do: [ :question | self renderQuestion: question on: aCanvas. aCanvas horizontalRule ]
 ]

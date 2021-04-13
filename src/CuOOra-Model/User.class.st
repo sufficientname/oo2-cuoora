@@ -43,13 +43,13 @@ User >> answers [
 	^ answers
 ]
 
-{ #category : #other }
+{ #category : #adding }
 User >> beInterestedIn: aTopic [
 	(self isInterestedIn: aTopic)
 		ifFalse: [ topicsOfInterest add: aTopic ]
 ]
 
-{ #category : #other }
+{ #category : #removing }
 User >> beNotInterestedIn: aTopic [
 	(self isInterestedIn: aTopic)
 		ifTrue: [ topicsOfInterest remove: aTopic ]
@@ -65,14 +65,7 @@ User >> createdAt: aDateAndTime [
 	createdAt := aDateAndTime
 ]
 
-{ #category : #other }
-User >> deleteQuestion: aQuestion [
-	(self hasQuestion: aQuestion)
-		ifFalse: [ ^ self ].
-	aQuestion delete
-]
-
-{ #category : #other }
+{ #category : #adding }
 User >> follow: aUser [
 	((self isFollowing: aUser) or: self == aUser)
 		ifFalse: [ following add: aUser ]
@@ -146,7 +139,7 @@ User >> questions [
 	^ questions
 ]
 
-{ #category : #other }
+{ #category : #accessing }
 User >> relevantQuestions [
 	| relevantQuestions |
 	relevantQuestions := Set new.
@@ -169,7 +162,7 @@ User >> removeQuestion: aQuestion [
 	questions remove: aQuestion ifAbsent: [ ^ self ]
 ]
 
-{ #category : #other }
+{ #category : #accessing }
 User >> score [
 	| pointsPerQuestion pointsPerAnswer scoreQuestions scoreAnswers scoreReactionQuestions scoreReactionAnswers |
 	pointsPerQuestion := 20.
@@ -192,7 +185,7 @@ User >> topicsOfInterest [
 	^ topicsOfInterest
 ]
 
-{ #category : #other }
+{ #category : #removing }
 User >> unfollow: aUser [
 	(self isFollowing: aUser)
 		ifTrue: [ following remove: aUser ]

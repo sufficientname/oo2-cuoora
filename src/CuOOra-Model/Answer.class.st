@@ -20,7 +20,7 @@ Answer >> addEntryTo: aUser [
 	aUser addAnswer: self
 ]
 
-{ #category : #accessing }
+{ #category : #deleting }
 Answer >> delete [
 	super delete.
 	question removeAnswer: self

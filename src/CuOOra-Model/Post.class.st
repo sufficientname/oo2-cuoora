@@ -48,7 +48,7 @@ Post >> likes [
 	^ likes
 ]
 
-{ #category : #accessing }
+{ #category : #adding }
 Post >> registerDislikeBy: aUser [
 	dislikes
 		detect: [ :each | each user == aUser ]
@@ -63,7 +63,7 @@ Post >> registerDislikeBy: aUser [
 	dislikes add: (Reaction dislike user: aUser)
 ]
 
-{ #category : #accessing }
+{ #category : #adding }
 Post >> registerLikeBy: aUser [
 	likes
 		detect: [ :each | each user == aUser ]
@@ -112,12 +112,12 @@ Post >> user: aUser [
 	user := aUser
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 Post >> wasDislikedBy: aUser [
 	^ dislikes anySatisfy: [ :dislike | dislike user == aUser ]
 ]
 
-{ #category : #accessing }
+{ #category : #testing }
 Post >> wasLikedBy: aUser [
 	^ likes anySatisfy: [ :like | like user == aUser ]
 ]

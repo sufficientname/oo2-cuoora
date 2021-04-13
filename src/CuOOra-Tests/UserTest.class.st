@@ -73,35 +73,6 @@ UserTest >> testCreatedAt [
 ]
 
 { #category : #tests }
-UserTest >> testDeleteQuestion [
-	| user1 user2 topic1 topic2 topics question answer |
-	user1 := User username: 'user1' password: 'pass'.
-	user2 := User username: 'user2' password: 'pass'.
-	topic1 := Topic name: 'Test topic 1' description: 'A test topic'.
-	topic2 := Topic name: 'Test topic 2' description: 'Another test topic'.
-	topics := Set with: topic1 with: topic2.
-	question := user1 postQuestion: 'is this a question?' titled: 'question' relatedTo: topics.
-	answer := user2 postAnswer: 'yes' to: question.
-	"test invalid user"
-	user2 deleteQuestion: question.
-	self assert: (user1 hasQuestion: question).
-	"test valid user"
-	user1 deleteQuestion: question.
-	"assert user"
-	self assert: (user1 hasQuestion: question) not.
-	"assert topic"
-	self assert: question topics isEmpty.
-	topics do: [ :topic | self assert: (topic hasQuestion: question) not ].
-	"assert answers"
-	self assert: question answers isEmpty.
-	self assert: (user2 hasAnswer: answer) not
-	
-	
-	
-	
-]
-
-{ #category : #tests }
 UserTest >> testFollow [
 	| user1 user2 |
 	user1 := User username: 'user1' password: 'pass'.
