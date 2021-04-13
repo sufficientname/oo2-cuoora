@@ -1,6 +1,4 @@
-# oo2-cuoora
-
-# TP 1 OO2
+# TP 1 OO2 - CuOOra
 
 ## Requerimientos
 - Pharo 8
