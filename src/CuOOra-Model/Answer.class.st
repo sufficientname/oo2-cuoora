@@ -16,7 +16,7 @@ Answer class >> text: aText [
 ]
 
 { #category : #private }
-Answer >> addEntryTo: aUser [
+Answer >> addPostTo: aUser [
 	aUser addAnswer: self
 ]
 
@@ -41,6 +41,6 @@ Answer >> question: aQuestion [
 ]
 
 { #category : #private }
-Answer >> removeEntryFrom: aUser [
+Answer >> removePostFrom: aUser [
 	aUser removeAnswer: self
 ]

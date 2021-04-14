@@ -12,7 +12,7 @@ Class {
 }
 
 { #category : #private }
-Post >> addEntryTo: aUser [
+Post >> addPostTo: aUser [
 	self subclassResponsibility
 ]
 
@@ -28,7 +28,7 @@ Post >> createdAt: aDateAndTime [
 
 { #category : #deleting }
 Post >> delete [
-	self removeEntryFrom: user
+	self removePostFrom: user
 ]
 
 { #category : #accessing }
@@ -79,7 +79,7 @@ Post >> registerLikeBy: aUser [
 ]
 
 { #category : #private }
-Post >> removeEntryFrom: aUser [
+Post >> removePostFrom: aUser [
 	self subclassResponsibility
 ]
 
@@ -107,8 +107,8 @@ Post >> user [
 Post >> user: aUser [
 	aUser == user
 		ifTrue: [ ^ self ].
-	user ifNotNil: [ self removeEntryFrom: user ].
-	self addEntryTo: aUser.
+	user ifNotNil: [ self removePostFrom: user ].
+	self addPostTo: aUser.
 	user := aUser
 ]
 

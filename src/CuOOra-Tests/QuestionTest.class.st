@@ -19,7 +19,7 @@ QuestionTest >> testAddEntryTo [
 	| user question |
 	user := User username: 'user' password: 'pass'.
 	question := Question title: 'question' text: 'is this a question?'.
-	question addEntryTo: user.
+	question addPostTo: user.
 	self assert: (user hasQuestion: question)
 ]
 
@@ -118,8 +118,8 @@ QuestionTest >> testRemoveEntryFrom [
 	| user question |
 	user := User username: 'user' password: 'pass'.
 	question := Question title: 'question' text: 'is this a question?'.
-	question addEntryTo: user.
-	question removeEntryFrom: user.
+	question addPostTo: user.
+	question removePostFrom: user.
 	self assert: (user hasQuestion: question) not
 ]
 

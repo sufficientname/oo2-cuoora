@@ -5,11 +5,11 @@ Class {
 }
 
 { #category : #tests }
-AnswerTest >> testAddEntryTo [
+AnswerTest >> testAddPostTo [
 	| user answer |
 	user := User username: 'user' password: 'pass'.
 	answer := Answer text: 'this is an answer'.
-	answer addEntryTo: user.
+	answer addPostTo: user.
 	self assert: (user hasAnswer: answer)
 ]
 
@@ -35,12 +35,12 @@ AnswerTest >> testQuestion [
 ]
 
 { #category : #tests }
-AnswerTest >> testRemoveEntryFrom [
+AnswerTest >> testRemovePostFrom [
 	| user answer |
 	user := User username: 'user' password: 'pass'.
 	answer := Answer text: 'this is an answer'.
-	answer addEntryTo: user.
-	answer removeEntryFrom: user.
+	answer addPostTo: user.
+	answer removePostFrom: user.
 	self assert: (user hasAnswer: answer) not
 ]
 

@@ -27,7 +27,7 @@ Question >> addAnswer: anAnswer [
 ]
 
 { #category : #private }
-Question >> addEntryTo: aUser [
+Question >> addPostTo: aUser [
 	aUser addQuestion: self
 ]
 
@@ -79,7 +79,7 @@ Question >> removeAnswer: anAnswer [
 ]
 
 { #category : #private }
-Question >> removeEntryFrom: aUser [
+Question >> removePostFrom: aUser [
 	aUser removeQuestion: self
 ]
 
