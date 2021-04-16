@@ -1,6 +1,6 @@
 Class {
 	#name : #UserProfileComponent,
-	#superclass : #CuOOraComponent,
+	#superclass : #CuOOraMainComponent,
 	#instVars : [
 		'user'
 	],
@@ -8,8 +8,8 @@ Class {
 }
 
 { #category : #callbacks }
-UserProfileComponent >> follow: aUser [
-	self session user follow: aUser
+UserProfileComponent >> follow [
+	self session user follow: user
 ]
 
 { #category : #rendering }
@@ -19,6 +19,8 @@ UserProfileComponent >> renderContentOn: aCanvas [
 	aCanvas label with: 'score: ' , user score printString.
 	aCanvas label with: 'questions: ' , user questions size printString.
 	aCanvas label with: 'answers: ' , user answers size printString.
+	self renderFollowingUsersOn: aCanvas.
+	self renderFollowingTopicsOn: aCanvas.
 	aCanvas horizontalRule.
 	aCanvas heading level3 with: 'Questions:'.
 	aCanvas div
@@ -34,16 +36,41 @@ UserProfileComponent >> renderFollowButtonOn: aCanvas [
 	(self session user isFollowing: user)
 		ifTrue: [ buttonText := 'Unfollow'.
 			buttonClass := 'button button-outline'.
-			buttonCallback := [ self unfollow: user ] ]
+			buttonCallback := [ self unfollow ] ]
 		ifFalse: [ buttonText := 'Follow'.
 			buttonClass := 'button'.
-			buttonCallback := [ self follow: user ] ].
+			buttonCallback := [ self follow ] ].
 	aCanvas anchor class: buttonClass; callback: buttonCallback; with: buttonText
 ]
 
+{ #category : #rendering }
+UserProfileComponent >> renderFollowingTopicsOn: aCanvas [
+	aCanvas div
+		with: [ aCanvas label with: 'topics of interest: '.
+			user topicsOfInterest
+				do: [ :topicOfInterest | 
+					aCanvas anchor
+						class: 'topic';
+						callback: [ parent goToTopic: topicOfInterest ];
+						with: topicOfInterest name.
+					aCanvas text: ' ' ] ]
+]
+
+{ #category : #rendering }
+UserProfileComponent >> renderFollowingUsersOn: aCanvas [
+	aCanvas div
+		with: [ aCanvas label with: 'following: '.
+			user following
+				do: [ :followingUser | 
+					aCanvas anchor
+						callback: [ parent goToUserProfile: followingUser ];
+						with: followingUser username.
+					aCanvas text: ' ' ] ]
+]
+
 { #category : #callbacks }
-UserProfileComponent >> unfollow: aUser [
-	self session user unfollow: aUser
+UserProfileComponent >> unfollow [
+	self session user unfollow: user
 ]
 
 { #category : #accessing }

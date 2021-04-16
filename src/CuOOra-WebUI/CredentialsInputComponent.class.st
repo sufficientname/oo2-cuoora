@@ -11,7 +11,7 @@ Class {
 
 { #category : #private }
 CredentialsInputComponent >> continueAs: aUser [
-	self session user: aUser.
+	self session signIn: aUser.
 	self answer
 ]
 

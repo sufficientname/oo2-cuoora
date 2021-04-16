@@ -23,40 +23,24 @@ CuOOra class >> soleInstanceClear [
 
 { #category : #'instance creation' }
 CuOOra class >> soleInstanceFill [
-	| user1 user2 user3 topic1 topic2 topic3 question1 question2 question3 question4 relevantQuestions |
-	user1 := User username: 'usernameusername1' password: 'pass'.
-	user2 := User username: 'usernameusername2' password: 'pass'.
-	user3 := User username: 'usernameusername3' password: 'pass'.
-	topic1 := Topic name: 'topic1' description: 'topic1'.
-	topic2 := Topic name: 'topic2' description: 'topic2'.
-	topic3 := Topic name: 'topic3' description: 'topic3'.
-	user1 follow: user2.
-	user1 beInterestedIn: topic2.
-	question1 := user2
-		postQuestion: 'Lo que dice el titulo, me preguntaba si puedo preguntar algo como esto.'
-		titled: 'Es esta una pregunta valida?'
-		relatedTo: (Set with: topic1 with: topic2 with: topic3).
-	question2 := user2
-		postQuestion: 'Lo que dice el titulo, me preguntaba si puedo preguntar algo como esto.'
-		titled: 'Es esta una pregunta valida?'
-		relatedTo: (Set with: topic2).
-	question2 registerDislikeBy: user2.
-	question3 := user3
-		postQuestion: 'Lo que dice el titulo, me preguntaba si puedo preguntar algo como esto.'
-		titled: 'Es esta una pregunta valida?'
-		relatedTo: (Set with: topic2).
-	question3 registerLikeBy: user3.
-	question4 := user3
-		postQuestion: 'question4'
-		titled: 'question4'
-		relatedTo: (Set with: topic1).
-	relevantQuestions := user1 relevantQuestions.
-	user2 postAnswer: 'No, este tipo de preguntas no estan permitidas' to: question1.
-	user3 postAnswer: 'Exactamente como dijo @user2' to: question1.
-	user1 postAnswer: 'Muchas gracias!' to: question1. 
-	self soleInstance addTopic: topic1; addTopic: topic2.
-	self soleInstance addUser: user1; addUser: user2; addUser: user3.
-
+	| cuOOra pedro diego juan topicOO1 topicTestDeUnidad topicSmalltalk questionPedro questionDiego |
+	cuOOra := self soleInstance.
+	"users"
+	pedro := cuOOra createUserWithUsername: 'pedro@cuoora.com' andPassword: 'pedro@cuoora.com'.
+	diego := cuOOra createUserWithUsername: 'diego@cuoora.com' andPassword: 'diego@cuoora.com'.
+	juan := cuOOra createUserWithUsername: 'juan@cuoora.com' andPassword: 'juan@cuoora.com'.
+	"follows"
+	juan follow: diego.
+	pedro follow: juan.
+	"topics"
+	topicOO1 := cuOOra getOrCreateTopicWithName: 'OO1'.
+	topicTestDeUnidad := cuOOra getOrCreateTopicWithName: 'Test de Unidad'.
+	topicSmalltalk := cuOOra getOrCreateTopicWithName: 'Smalltalk'.
+	"questions and answors"
+	questionPedro := pedro postQuestion: 'Lo que dice el titulo' titled: '¿Para que sirve el metodo SetUp?' relatedTo: (OrderedCollection with: topicOO1 with: topicTestDeUnidad).
+	diego postAnswer: 'Sirve para instanciar los objetos que son evaluados por el test en un único 	método y que se ejecute siempre antes de cada test.' to: questionPedro.
+	questionDiego := diego postQuestion: 'Lo que dice el titulo' titled: '¿Que significa #messageNotUnderstood?' relatedTo: (Set with: topicOO1 with: topicSmalltalk).
+	pedro postAnswer: 'Significa que el objeto que recibió el mensajeno encontró ningún método para 	ejecutar en respuesta.' to: questionDiego.
 ]
 
 { #category : #adding }

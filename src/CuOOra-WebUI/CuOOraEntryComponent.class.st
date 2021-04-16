@@ -27,17 +27,12 @@ CuOOraEntryComponent >> initialize [
 	cuOOraTask := CuOOraTask new
 ]
 
-{ #category : #testing }
-CuOOraEntryComponent >> isUserSignedIn [
-	^ self session user isNotNil
-]
-
 { #category : #rendering }
 CuOOraEntryComponent >> renderContentOn: aCanvas [
 	aCanvas div
 		class: 'container';
 		with: [ self renderNavbarOn: aCanvas. 
-			self isUserSignedIn
+			self session isUserSignedIn
 				ifFalse: [ aCanvas render: signInComponent ]
 				ifTrue: [ aCanvas render: cuOOraTask ] ]
 ]
@@ -50,9 +45,9 @@ CuOOraEntryComponent >> renderNavbarOn: aCanvas [
 				class: 'menu';
 				with: [ aCanvas listItem
 						with: [ aCanvas anchor
-								callback: [ cuOOraTask goToHomeComponent ];
+								callback: [ cuOOraTask goToHome ];
 								with: 'CuOOra' ].
-					self isUserSignedIn
+					self session isUserSignedIn
 						ifTrue: [ aCanvas listItem
 								with: [ aCanvas anchor
 										callback: [ cuOOraTask goToTopics ];
@@ -70,8 +65,7 @@ CuOOraEntryComponent >> renderNavbarOn: aCanvas [
 
 { #category : #callbacks }
 CuOOraEntryComponent >> signOut [
-	self session user: nil.
-	self session unregister.
+	self session signOut.
 	self requestContext redirectTo: self application url
 ]
 

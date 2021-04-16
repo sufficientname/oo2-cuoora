@@ -27,7 +27,7 @@ PostEditorComponent >> post [
 PostEditorComponent >> renderCancelButtonOn: aCanvas [
 	aCanvas anchor
 		class: 'button column';
-		callback: [ self answer ];
+		callback: [ self cancel ];
 		with: 'Cancel'
 ]
 

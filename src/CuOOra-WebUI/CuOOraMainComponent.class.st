@@ -1,5 +1,5 @@
 Class {
-	#name : #CuOOraComponent,
+	#name : #CuOOraMainComponent,
 	#superclass : #WAComponent,
 	#instVars : [
 		'parent'
@@ -8,37 +8,24 @@ Class {
 }
 
 { #category : #accessing }
-CuOOraComponent class >> parent: aWAComponent [
+CuOOraMainComponent class >> parent: aWAComponent [
 	^ self new
 		parent: aWAComponent;
 		yourself
 ]
 
 { #category : #accessing }
-CuOOraComponent >> parent [
+CuOOraMainComponent >> parent [
 	^ parent
 ]
 
 { #category : #accessing }
-CuOOraComponent >> parent: aWAComponent [
+CuOOraMainComponent >> parent: aWAComponent [
 	parent := aWAComponent
 ]
 
 { #category : #rendering }
-CuOOraComponent >> renderAnswer: anAnswer on: aCanvas [
-	aCanvas
-		render:
-			((AnswerComponent with: anAnswer)
-				userCallback: [ :user | parent goToUserProfile: user ])
-]
-
-{ #category : #rendering }
-CuOOraComponent >> renderAnswers: anAnswerCollection on: aCanvas [
-	anAnswerCollection do: [ :answer | self renderAnswer: answer on: aCanvas. aCanvas horizontalRule ]
-]
-
-{ #category : #rendering }
-CuOOraComponent >> renderQuestion: aQuestion on: aCanvas [
+CuOOraMainComponent >> renderQuestion: aQuestion on: aCanvas [
 	aCanvas
 		render:
 			((QuestionComponent with: aQuestion)
@@ -48,7 +35,7 @@ CuOOraComponent >> renderQuestion: aQuestion on: aCanvas [
 ]
 
 { #category : #rendering }
-CuOOraComponent >> renderQuestions: aQuestionCollection on: aCanvas [
+CuOOraMainComponent >> renderQuestions: aQuestionCollection on: aCanvas [
 	aQuestionCollection
 		do: [ :question | self renderQuestion: question on: aCanvas. aCanvas horizontalRule ]
 ]

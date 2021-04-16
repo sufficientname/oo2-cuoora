@@ -1,20 +1,16 @@
 Class {
 	#name : #CuOOraTask,
 	#superclass : #WATask,
-	#instVars : [
-		'signInComponent',
-		'mainComponent'
-	],
 	#category : #'CuOOra-WebUI'
 }
 
 { #category : #rendering }
 CuOOraTask >> go [
-	self goToHomeComponent
+	self goToHome
 ]
 
 { #category : #callbacks }
-CuOOraTask >> goToHomeComponent [
+CuOOraTask >> goToHome [
 	self call: (HomeComponent parent: self)
 ]
 
@@ -36,10 +32,4 @@ CuOOraTask >> goToTopics [
 { #category : #callbacks }
 CuOOraTask >> goToUserProfile: aUser [
 	self call: ((UserProfileComponent parent: self) user: aUser)
-]
-
-{ #category : #initialization }
-CuOOraTask >> initialize [
-	super initialize.
-	signInComponent := SignInComponent new
 ]

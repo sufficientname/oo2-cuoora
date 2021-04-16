@@ -23,6 +23,33 @@ CuOOraTest >> testAddUser [
 ]
 
 { #category : #tests }
+CuOOraTest >> testCreateUserWithUsernameAndPassword [
+	| cuoora user userWithSameUsername username password |
+	cuoora := CuOOra new.
+	username := 'user'.
+	password := 'pass'.
+	user := cuoora createUserWithUsername: username andPassword: password.
+	self assert: (cuoora hasUser: user). 
+	self assert: user username equals: username.
+	self assert: user password equals: password.
+	userWithSameUsername := cuoora createUserWithUsername: user username andPassword: user password.
+	self assert: userWithSameUsername isNil
+]
+
+{ #category : #tests }
+CuOOraTest >> testGetOrCreateTopicWithName [
+	| cuoora topic topicWithSameName topicName |
+	cuoora := CuOOra new.
+	topicName := 'topic'.
+	self assert: cuoora topics isEmpty.
+	topic := cuoora getOrCreateTopicWithName: topicName.
+	self assert: (cuoora hasTopic: topic).
+	self assert: topic name equals: topicName.
+	topicWithSameName := cuoora getOrCreateTopicWithName: topic name.
+	self assert: topic identicalTo: topicWithSameName
+]
+
+{ #category : #tests }
 CuOOraTest >> testGetUserWithUsernameAndPassword [
 	| cuoora user1 user2 |
 	cuoora := CuOOra new.

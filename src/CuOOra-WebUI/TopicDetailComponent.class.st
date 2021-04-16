@@ -1,6 +1,6 @@
 Class {
 	#name : #TopicDetailComponent,
-	#superclass : #CuOOraComponent,
+	#superclass : #CuOOraMainComponent,
 	#instVars : [
 		'topic'
 	],
@@ -8,8 +8,8 @@ Class {
 }
 
 { #category : #callbacks }
-TopicDetailComponent >> follow: aTopic [
-	self session user beInterestedIn: aTopic
+TopicDetailComponent >> follow [
+	self session user beInterestedIn: topic
 ]
 
 { #category : #rendering }
@@ -30,10 +30,10 @@ TopicDetailComponent >> renderFollowButtonOn: aCanvas [
 	(self session user isInterestedIn: topic)
 		ifTrue: [ buttonText := 'Unfollow'.
 			buttonClass := 'button button-outline'.
-			buttonCallback := [ self unfollow: topic ] ]
+			buttonCallback := [ self unfollow ] ]
 		ifFalse: [ buttonText := 'Follow'.
 			buttonClass := 'button'.
-			buttonCallback := [ self follow: topic ] ].
+			buttonCallback := [ self follow ] ].
 	aCanvas anchor
 		class: buttonClass;
 		callback: buttonCallback;
@@ -51,6 +51,6 @@ TopicDetailComponent >> topic: aTopic [
 ]
 
 { #category : #callbacks }
-TopicDetailComponent >> unfollow: aTopic [
-	self session user beNotInterestedIn: aTopic
+TopicDetailComponent >> unfollow [
+	self session user beNotInterestedIn: topic
 ]

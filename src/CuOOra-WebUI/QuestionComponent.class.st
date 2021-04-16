@@ -55,9 +55,11 @@ QuestionComponent >> renderTitleOn: aCanvas [
 QuestionComponent >> renderTopicsOn: aCanvas [
 	post topics
 		do: [ :topic | 
-			aCanvas anchor class: 'topic';
+			aCanvas anchor
+				class: 'topic';
 				callback: [ self goToTopic: topic ];
-				with: topic name ].
+				with: topic name.
+			aCanvas text: ' ' ]
 ]
 
 { #category : #accessing }

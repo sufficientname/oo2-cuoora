@@ -1,13 +1,17 @@
 Class {
 	#name : #SignInComponent,
 	#superclass : #CredentialsInputComponent,
+	#instVars : [
+		'signUpComponent'
+	],
 	#category : #'CuOOra-WebUI'
 }
 
 { #category : #callbacks }
 SignInComponent >> goToSignUp [
 	| user |
-	user := self call: SignUpComponent new.
+	signUpComponent := SignUpComponent new.
+	user := self call: signUpComponent.
 	user ifNotNil: [ self continueAs: user ]
 ]
 
