@@ -9,8 +9,10 @@ Class {
 
 { #category : #callbacks }
 HomeComponent >> goToQuestionEditor [
+	| question |
 	questionEditorComponent := QuestionEditorComponent new.
-	self call: questionEditorComponent
+	question := self call: questionEditorComponent.
+	parent goToQuestion: question
 ]
 
 { #category : #rendering }
