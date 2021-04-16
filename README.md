@@ -7,7 +7,7 @@
 - ejecutar en el Playground las siguiente lineas
 ```smalltalk
 | app |
-CuOOra soleInstanceFill
+CuOOra soleInstanceFill.
 app := WAAdmin register: CuOOraEntryComponent asApplicationAt: 'cuoora'.
 app sessionClass: CuOOraSession.
 ```
