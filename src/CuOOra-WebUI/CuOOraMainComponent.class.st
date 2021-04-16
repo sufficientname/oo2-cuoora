@@ -8,9 +8,9 @@ Class {
 }
 
 { #category : #accessing }
-CuOOraMainComponent class >> parent: aWAComponent [
+CuOOraMainComponent class >> parent: aCuOOraTask [
 	^ self new
-		parent: aWAComponent;
+		parent: aCuOOraTask;
 		yourself
 ]
 
