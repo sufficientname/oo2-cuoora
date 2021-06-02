@@ -1,4 +1,4 @@
-# TP 1 OO2 - CuOOra
+# TP 1 OO2 - CuOOra Frameworks
 
 ## Requerimientos
 - Pharo 8
